@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CrudNet6.Models.Clientes>
+@{
+    ViewData["Title"] = "Inicio";
+}
+<h1 class="text-center">Crud basico </h1>
+<div class="row">
+    <div class="col-12">
+        <div class="float-right">
+            <a asp-action="Crear" asp-controller="Home" class="btn btn-success">Nuevo Cliente</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card border">
+            <div class="card-header">
+                <h3><strong>Lista de clientes</strong></h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    @if (Model.Count() > 0)
+                    {
+                        <table class="table table-bordered" id="tblClientes" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(m => m.Id)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Nombre)</th>
+                                    <th>@Html.DisplayNameFor(m => m.Telefono)</th>
+                                    <th> - - - -- - - Acciones - -- - - - -</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(m => item.Id)</td>
+                                        <td>@Html.DisplayFor(m => item.Nombre)</td>
+                                        <td>@Html.DisplayFor(m => item.Telefono)</td>
+                                        <td>
+                                            <a class="btn btn-primary" asp-action="Editar" asp-route-id="@item.Id">Editar</a>
+                                            <a class="btn btn-secondary" asp-action="Detalle" asp-route-id="@item.Id">Detalle</a>
+                                            <a class="btn btn-danger" asp-action="Borrar" asp-route-id="@item.Id">Borrar</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
